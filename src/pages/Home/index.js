@@ -10,9 +10,7 @@ export const App = () => {
 
   const handleGetData = async () => {
     const userData = await fetch(`https://api.github.com/users/${user}`);
-    console.log(userData);
     const newUser = await userData.json();
-
     if (newUser.name) {
       const { avatar_url, name, login, bio } = newUser;
       if (newUser.bio === null) {
@@ -28,6 +26,8 @@ export const App = () => {
       if (newRepos.length) {
         setRepos(newRepos);
       }
+    } else {
+      setCurrentUser("invalid");
     }
   };
 
@@ -49,7 +49,7 @@ export const App = () => {
             Buscar
           </button>
         </div>
-        {currentUser?.name ? (
+        {currentUser?.name && currentUser?.name !== "invalid" ? (
           <div className='content'>
             <div className='pageContent'>
               <div className='dataBox'>
@@ -59,28 +59,40 @@ export const App = () => {
                   alt='profile'
                 />
                 <div className='profileInfo'>
-                  <h3>{currentUser.name}</h3>
+                  <h2>{currentUser.name}</h2>
                   <span>@{currentUser.login}</span>
                   <p>{currentUser.bio}</p>
                 </div>
               </div>
               <hr />
-              {repos?.length ? (
-                <div className='repoBox'>
-                  <h3>Repositórios</h3>
-                  {repos.map((repo) => (
+              <div className='repoBox'>
+                <h2>Repositórios</h2>
+                {repos?.length > 0 ? (
+                  repos.map((repo) => (
                     <ListItem
                       key={repo.id}
                       title={repo.name}
                       description={repo.description}
+                      url={repo.html_url}
                     />
-                  ))}
-                </div>
-              ) : null}
+                  ))
+                ) : (
+                  <h3>Usuário sem repositórios.</h3>
+                )}
+              </div>
             </div>
           </div>
+        ) : currentUser == "invalid" ? (
+          <div className='emptySearch'>
+            <h2>
+              Usuário não encontrado. <br />
+              Procure um usuário digitando o @username acima.
+            </h2>
+          </div>
         ) : (
-          <h1>Procure um usuário digitando o @username acima. </h1>
+          <div className='emptySearch'>
+            <h2>Procure um usuário o @username acima.</h2>{" "}
+          </div>
         )}
       </div>
     </div>

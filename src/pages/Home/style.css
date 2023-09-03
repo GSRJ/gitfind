@@ -86,7 +86,7 @@ button:hover {
   text-align: center;
 }
 
-h3 {
+h2 {
   font-size: 30px;
   font-weight: 400;
   text-shadow: 4px 4px 4px black;
@@ -104,4 +104,20 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  & h3 {
+    color: #539bf5;
+    font-weight: lighter;
+  }
+}
+
+.emptySearch {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+
+  & h2 {
+    color: #539bf5;
+    text-align: center;
+  }
 }

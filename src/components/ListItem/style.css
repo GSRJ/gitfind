@@ -11,6 +11,11 @@
   gap: 1rem;
 }
 
+.listItem a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .listItem strong {
   color: #539bf5;
   font-size: 24px;
