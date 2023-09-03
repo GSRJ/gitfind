@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -5,9 +6,9 @@
 
 body {
   background-color: #1d2128;
+  font-family: "ADLaM Display", cursive;
 }
 
 hr {
-  background-color: rgba(229, 229, 229, 0.2);
   border: 1px solid rgba(229, 229, 229, 0.2);
 }
